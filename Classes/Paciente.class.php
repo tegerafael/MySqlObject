@@ -26,7 +26,7 @@ class Paciente extends Crud{
         $celular = $this->getCelularPac();
         $foto = $this->getFotoPac();
 
-        $sqlInsert = "INSERT INTO Paciente (nomePac, enderecoPac, bairroPac, cidadePac, estadoPac, cepPac, nascimentoPac, emailPac, celularPac)
+        $sqlInsert = "INSERT INTO $this->tabela (nomePac, enderecoPac, bairroPac, cidadePac, estadoPac, cepPac, nascimentoPac, emailPac, celularPac)
         VALUES ('$nome', '$endereco', '$bairro', '$cidade', '$estado', '$cep', '$nascimento', '$email', '$celular')";
         
         if(Conexao::query($sqlInsert)){

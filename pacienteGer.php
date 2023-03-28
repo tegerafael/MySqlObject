@@ -49,6 +49,17 @@
                     $local = "imagesPac/";
                     move_uploaded_file($_FILES['filFoto']['tmp_name'], $local.$nomeArq);
                 }
+            $paciente = new Paciente();
+            $paciente->setNomePac(filter_input(INPUT_POST, 'txtNome'));
+            $paciente->setEnderecoPac(filter_input(INPUT_POST, 'txtEndereco'));
+            $paciente->setBairroPac(filter_input(INPUT_POST, 'txtBairro'));
+            $paciente->setCidadePac(filter_input(INPUT_POST, 'txtCidade'));
+            $paciente->setEstadoPac(filter_input(INPUT_POST, 'sltEstado'));
+            $paciente->setCepPac(filter_input(INPUT_POST, 'txtCep'));
+            $paciente->setNascimentoPac(filter_input(INPUT_POST, 'txtNascimento'));
+            $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
+            $paciente->setFotoPac($nomeArq);
+            $paciente->inserir();
             }
             ?>
             <form class="row g-3" action="<?php echo
