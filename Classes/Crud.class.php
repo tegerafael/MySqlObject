@@ -1,7 +1,7 @@
 <?php
 abstract class Crud{
     protected $tabela;
-    abstract function inserir();
-    abstract function atualizar($campo, $id);
+    public abstract function inserir();
+    public abstract function atualizar($campo, $id);
 }
 ?>

@@ -16,7 +16,7 @@ final class Conexao{
             define('db_pass', 'root');
         }
         if(!defined('db_name')){
-           define('db_name', 'Clinica');
+           define('db_name', 'clinica');
         }
         if(!defined('db_port')){
             define('db_port', 3360);
