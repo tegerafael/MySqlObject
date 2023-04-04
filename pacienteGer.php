@@ -46,7 +46,7 @@
             if(filter_has_var(INPUT_GET, 'id')){
                 $paciente = new Paciente();
                 $id = filter_input(INPUT_GET, 'id');
-                //$pacEdit = $paciente->buscar('idPac', $id);
+                $pacEdit = $paciente->buscar('idPac', $id);
             }
             if(filter_has_var(INPUT_GET, 'idDel')){
                 $paciente = new Paciente();
@@ -79,7 +79,7 @@
                                             htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="txtNome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome..." name="txtNome">
+                    <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome..." name="txtNome" value="<?php echo $pacEdit->nomePac;?>">
                 </div>
                 <div class="col-12">
                     <label for="txtEndereco" class="form-label">Endereço</label>
