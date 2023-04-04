@@ -42,6 +42,18 @@
             spl_autoload_register(function ($class) {
                 require_once "./Classes/{$class}.class.php";
             });
+            $cac = new Paciente();
+            if(filter_has_var(INPUT_GET, 'id')){
+                $paciente = new Paciente();
+                $id = filter_input(INPUT_GET, 'id');
+                //$pacEdit = $paciente->buscar('idPac', $id);
+            }
+            if(filter_has_var(INPUT_GET, 'idDel')){
+                $paciente = new Paciente();
+                $id = filter_input(INPUT_GET, 'idDel');
+                //$paciente->deletar('idPac, $id');
+            }
+
             if (filter_has_var(INPUT_POST, 'btnGravar')){
                 if(isset($_FILES['filFoto'])){
                     $ext = strtolower(substr($_FILES['filFoto']['name'], -4));
@@ -58,6 +70,7 @@
             $paciente->setCepPac(filter_input(INPUT_POST, 'txtCep'));
             $paciente->setNascimentoPac(filter_input(INPUT_POST, 'txtNascimento'));
             $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
+            $paciente->setCelularPac(filter_input(INPUT_POST, 'txtCelular'));
             $paciente->setFotoPac($nomeArq);
             $paciente->inserir();
             }
