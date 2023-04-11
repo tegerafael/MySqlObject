@@ -55,12 +55,22 @@ class Paciente extends Crud{
         cepPac = '$cep',
         nascimentoPac = '$nascimento',
         emailPac = '$email',
-        celularPac = '$celular'";
+        celularPac = '$celular',
+		fotoPac = '$foto' WHERE $campo = {$id}";
+		
 
         if(Conexao::query($sqlUpdate)){
             header('location: pacientes.php');
         }
     }
+
+	public function deletar($campo, $id){
+		$sqlDelete = "DELETE FROM $this->tabela WHERE $campo = {$id}";
+
+		if(Conexao::query($sqlDelete)){
+			header('location: pacientes.php');
+		}
+	}
 
 	/**
 	 * @return mixed

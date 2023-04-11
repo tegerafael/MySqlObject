@@ -25,10 +25,10 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Consultas</a>
+                            <a class="nav-link" href="pacientes.php">Listar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cadastros</a>
+                            <a class="nav-link" href="pacienteGer.php">Cadastrar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled">Atualizações</a>
@@ -70,7 +70,7 @@
                                 edit_square
                             </span>
                         </a>
-                        <a href="#" class="btn btn-danger">
+                        <a href="pacientes.php?idDel=<?php echo $row->idPac?>" class="btn btn-danger">
                             <span class="material-symbols-outlined">
                                 delete
                             </span>
@@ -83,7 +83,7 @@
                 </tbody>
             </table>
             <div class="col-12">
-                <a href="pacienteGer.php" class="btn btn-success">
+                <a href="pacienteGer.php>" class="btn btn-success">
                     <span class="material-symbols-outlined">note_add</span></a>
             </div>
         </div>
