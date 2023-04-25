@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="css/layout.css">
-    <title>Pacientes</title>
+    <title>Especialidades</title>
 </head>
 
 <body>
@@ -25,10 +25,10 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pacientes.php">Listar</a>
+                            <a class="nav-link" href="especialidades.php">Listar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pacienteGer.php">Cadastrar</a>
+                            <a class="nav-link" href="especialidadeGer.php">Cadastrar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled">Atualizações</a>
@@ -43,11 +43,7 @@
             <table class="table">
                 <thead class="table-warning">
                     <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>Celular</th>
-                        <th>Ações</th>
+                        <th>Especialidade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,22 +51,19 @@
                     spl_autoload_register(function ($class) {
                         require_once "./Classes/{$class}.class.php";
                     });
-                    $paciente = new Paciente();
-                    $dadosBanco = $paciente->listar();
+                    $especialidade = new Especialidade();
+                    $dadosBanco = $especialidade->listar();
                     while($row = $dadosBanco->fetch_object()){
 
                     ?>
                 <tr>
-                    <td><img src="ImagesPac/<?php echo $row->fotoPac;?>" alt="Foto do paciente <?php echo $row->nomePac; ?>" class="imgRed"></td>
-                    <td><?php echo $row->nomePac; ?></td>
-                    <td><?php echo $row->emailPac; ?></td>
-                    <td><?php echo $row->celularPac; ?></td>
-                    <td><a href="pacienteGer.php?id=<?php echo $row->idPac?>" class="btn btn-primary">
+                    <td><?php echo $row->NomeEsp; ?></td>
+                    <td><a href="especialidadeGer.php?id=<?php echo $row->idEsp?>" class="btn btn-primary">
                             <span class="material-symbols-outlined">
                                 edit_square
                             </span>
                         </a>
-                        <a href="pacienteGer.php?idDel=<?php echo $row->idPac?>" class="btn btn-danger">
+                        <a href="especialidadeGer.php?idDel=<?php echo $row->idEsp?>" class="btn btn-danger">
                             <span class="material-symbols-outlined">
                                 delete
                             </span>
@@ -83,7 +76,7 @@
                 </tbody>
             </table>
             <div class="col-12">
-                <a href="pacienteGer.php>" class="btn btn-success">
+                <a href="especialidadeGer.php" class="btn btn-success">
                     <span class="material-symbols-outlined">note_add</span></a>
             </div>
         </div>

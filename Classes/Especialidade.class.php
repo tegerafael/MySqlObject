@@ -18,6 +18,14 @@ class Especialidade extends Crud{
 
     public function atualizar($campo, $id){
         $nome = $this->getNomeEsp();
+
+		$sqlUpdate = "UPDATE $this->tabela SET 
+        NomeEsp = '$nome'
+        WHERE $campo = {$id}";
+		
+        if(Conexao::query($sqlUpdate)){
+            header('location: especialidades.php');
+        }
     }
 
 	/**
