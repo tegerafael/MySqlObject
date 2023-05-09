@@ -4,8 +4,8 @@ abstract class Crud{
     public abstract function inserir();
     public abstract function atualizar($campo, $id);
 
-    public function listar(){
-        $selectSQL = "SELECT * FROM {$this->tabela}";
+    public function listar($where = null){
+        $selectSQL = "SELECT * FROM {$this->tabela} $where";
         return Conexao::query($selectSQL);
     }
 

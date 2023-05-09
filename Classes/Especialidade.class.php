@@ -12,7 +12,7 @@ class Especialidade extends Crud{
         VALUES ('$nome')";
         
         if(Conexao::query($sqlInsert)){
-            header('location: especialidadeGer.php');
+            header('location: especialidades.php');
         }
     }
 
