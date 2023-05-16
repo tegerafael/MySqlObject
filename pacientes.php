@@ -27,7 +27,7 @@
                             <hr class="dropdown-divider">
                         </li>
                     </ul>
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs">   
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">Especialidades</a>
@@ -38,6 +38,17 @@
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                        aria-expanded="false">Medicos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="medicos.php">Listar</a></li>
+                                        <li><a class="dropdown-item" href="medicoGer.php">Cadastrar</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    </ul>
         </nav>
 
     </header>

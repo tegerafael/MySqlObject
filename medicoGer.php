@@ -16,7 +16,7 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Médicos</a>
+                        aria-expanded="false">Pacientes</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="pacientes.php">Listar</a></li>
                         <li><a class="dropdown-item" href="pacienteGer.php">Cadastrar</a></li>
@@ -35,17 +35,17 @@
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">Medicos</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="medicos.php">Listar</a></li>
-                                <li><a class="dropdown-item" href="medicoGer.php">Cadastrar</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                        aria-expanded="false">Medicos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="medicos.php">Listar</a></li>
+                                        <li><a class="dropdown-item" href="medicoGer.php">Cadastrar</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    </ul>
         </nav>
 
     </header>
@@ -76,20 +76,20 @@
                 $medico->setEmailMed(filter_input(INPUT_POST, 'txtEmail'));
                 $medico->setCelularMed(filter_input(INPUT_POST, 'txtCelular'));
                 $medico->setCrmMed(filter_input(INPUT_POST, 'txtCrm'));
-                $medico->setEspecialidadeMed(filter_input(INPUT_POST, 'txtEspecialidade'));
+                $medico->setEspecialidadeMed(filter_input(INPUT_POST, 'sltEspecialidade'));
 
-            if (empty($id)) {
-                $medico->inserir();
-            } else {
-                $medico->atualizar('idMed', $id);
+                if (empty($id)) {
+                    $medico->inserir();
+                } else {
+                    $medico->atualizar('idMed', $id);
+                }
             }
-            }
-        
+
             ?>
             <form class="row g-3" action="<?php echo
-                htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
-                enctype="multipart/form-data">
-                <input type="hidden" name="txtId" value="<?php echo isset($medEdit->idMed) ? $medEdit->idMed : null; ?>">
+                htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="txtId"
+                    value="<?php echo isset($medEdit->idMed) ? $medEdit->idMed : null; ?>">
                 <div class="col-12">
                     <label for="txtNome" class="form-label">Nome</label>
                     <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome..." name="txtNome"
@@ -97,8 +97,8 @@
                 </div>
                 <div class="col-12">
                     <label for="txtEmail" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="txtEmail" placeholder="Digite seu email..." name="txtEmail"
-                        value="<?php echo isset($medEdit->emailMed) ? $medEdit->emailMed : null; ?>">
+                    <input type="text" class="form-control" id="txtEmail" placeholder="Digite seu email..."
+                        name="txtEmail" value="<?php echo isset($medEdit->emailMed) ? $medEdit->emailMed : null; ?>">
                 </div>
                 <div class="col-md-6">
                     <label for="txtCelular" class="form-label">Celular</label>
@@ -111,9 +111,28 @@
                         value="<?php echo isset($medEdit->crmMed) ? $medEdit->crmMed : null; ?>">
                 </div>
                 <div class="col-12">
-                    <label for="txtEspecialidade" class="form-label">Especialidade</label>
-                    <input type="text" class="form-control" id="txtEspecialidade" placeholder="" name="txtEspecialidade"
-                        value="<?php echo isset($medEdit->EspecialidadeMed) ? $medEdit->EspecialidadeMed : null; ?>">
+                    <label for="sltEspecialidade" class="form-label">Especialidade</label>
+                    <select id="sltEspecialidade" class="form-select" name="sltEspecialidade">
+                        <?php $espSel = isset($medEdict->EspecialidadeMed) ?
+                            $medEdict->EspecialidadeMed : null ?>
+                        <option value="" selected hidden>Escolha...</option>
+                        <?php
+                        $especialidade = new Especialidade;
+                        $dadosBanco = $especialidade->listar();
+                        while ($row = $dadosBanco->fetch_object()) {
+                            ?>
+                            <option value="<?php echo $row->idEsp ?>" <?php
+                               if ($espSel === $row->idEsp) {
+                                   echo 'select';
+                               }
+                               ?>>
+                                <?php
+                                echo $row->NomeEsp
+                                    ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary" name="btnGravar">Gravar</button>
